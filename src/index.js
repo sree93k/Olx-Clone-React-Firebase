@@ -4,6 +4,7 @@ import App from './App';
 import { FirebaseContext} from './Store/Context'
 import Context from './Store/Context'
 import firebase  from './Firebase/config';
+
 ReactDOM.render(
 <FirebaseContext.Provider value={{firebase}}>
     <Context>

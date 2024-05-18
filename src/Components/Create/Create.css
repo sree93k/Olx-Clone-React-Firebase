@@ -1,9 +1,19 @@
+.createMain {
+  padding-top: 100px;
+  text-align: center; 
+  width: 100%; 
+  display: block; 
+  font-weight: 600;
+  font-size: x-large;
+}
+
+
 .centerDiv {
-    border: 1px solid black;
+    border: 1px solid rgb(212, 212, 212);
     width: max-content;
     padding: 50px;
     position: absolute;
-    top: 65%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 6px;
@@ -13,6 +23,7 @@
     border-left-color: transparent;
     border-right-color: transparent;
     outline-color: transparent;
+    width: 300px;
   }
   
   .uploadBtn {
@@ -30,3 +41,15 @@
     border: 2px solid #002f34;
   }
   
+
+.uploadImg {
+
+ font-size: 13px;
+ padding: 4px 10px;
+  background-color: #012f34;
+  color: white;
+  border: none;
+  cursor: pointer;
+  
+}
+

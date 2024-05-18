@@ -1,9 +1,11 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useState,useRef } from 'react';
 import './Create.css';
 import Header from '../Header/Header';
 import {FirebaseContext,AuthContext} from '../../Store/Context'
 import { useHistory } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 const Create = () => {
+
   const [name,setName]=useState('')
   const [category,setCategory]=useState('')
   const [price,setPrice]=useState('')
@@ -12,6 +14,7 @@ const Create = () => {
   const {user}=useContext(AuthContext)
   const date=new Date()
   const history=useHistory()
+  const fileInputRef = useRef(null);
   const handleSubmit=()=>{
     firebase.storage().ref(`/image/${image.name}`).put(image).then(({ref})=>{
       ref.getDownloadURL().then((url)=>{
@@ -28,9 +31,23 @@ const Create = () => {
       })
     })
   }
+
+
+  
+    const handleButtonClick = () => {
+      fileInputRef.current.click();
+    };
+  
+    const handleFileChange = (e) => {
+      setImage(e.target.files[0]);
+    };
+  
+
   return (
     <Fragment>
       <Header />
+      <div >
+      <h3 class='createMain'>POST YOUR AD </h3>
       <card>
         <div className="centerDiv">
           
@@ -69,22 +86,32 @@ const Create = () => {
             <br />
           
           <br />
-          <img 
+         { image && <img 
             alt="Posts"
             width="200px"
             height="200px"
             src={image? URL.createObjectURL(image):""}
-             ></img>
+             ></img>}
          
             <br />
-            <input onChange={(e)=>setImage(e.target.files[0])}
-             type="file"
+            <div>
+              <button className='uploadImg' onClick={handleButtonClick}>
+                Upload Image
+              </button>
+              <input
+                className='upload'
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                type="file"
+                style={{ display: 'none' }} 
               />
+            </div>
             <br />
             <button onClick={handleSubmit} className="uploadBtn">Upload and Submit</button>
           
         </div>
       </card>
+      </div>
     </Fragment>
   );
 };

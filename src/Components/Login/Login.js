@@ -18,12 +18,15 @@ function Login() {
     })
     .catch((error)=>alert(error.message))
   }
-
+function clickLoginLogo()
+{
+  history.push('/')
+}
 
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img onClick={clickLoginLogo} width="200px" height="200px" src={Logo}></img>
         <form onSubmit={handleLogin}>
           <label htmlFor="fname">Email</label>
           <br />

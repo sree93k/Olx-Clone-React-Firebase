@@ -1,23 +1,58 @@
 import React, { useState,useContext} from 'react';
-
 import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { FirebaseContext } from '../../Store/Context';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 export default function Signup() {
 
   const [name,setName]=useState('')
   const [email,setEmail]=useState('')
   const [phone,setPhone]=useState('')
   const [password,setPassword]=useState('')
+  const [errors, setErrors] = useState({name:null,email:null,phone:null,password:null});
   const {firebase}=useContext(FirebaseContext)
   const history=useHistory()
 
+  const validate = () => {
+    const errors = {};
+    if (!name) {errors.name = 'Name is required'}
+    else if (!/^[A-Za-z]+$/.test(name)) {
+      errors.name = 'Name can only contain alphabets';
+      
+    }
+    if (!email) {
+      errors.email = 'Email is required';
+      console.log("errors",errors);
+      
+    }
+    
+     else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Email is invalid';
+    }
+    if (!phone) {
+      errors.phone = 'Phone number is required';
+    } else if (!/^\d{10}$/.test(phone)) {
+      errors.phone = 'Phone number is invalid';
+    }
+    if (!password) errors.password = 'Password is required';
+    else if (password.length <8) errors.password = 'Password must be at least 8 characters long';
+
+    return errors;
+  };
 
   const handleSubmit=(e)=>{
     e.preventDefault()
-    console.log(firebase);
+    
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      // alert(errors)
+      console.log("errors",errors);
+      return;
+    }
+
     firebase.auth().createUserWithEmailAndPassword(email,password)
     .then((result)=>{
       result.user.updateProfile({displayName:name})
@@ -27,16 +62,37 @@ export default function Signup() {
           username:name,
           phone:phone,
           email:email,
-          password:password
         }).then(()=>{
           history.push('login')
         })
       })
-    })
+      .catch((error) => {
+        console.log(error.message);
+        if (error.code === 'auth/email-already-in-use') {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: 'This email is already in use. Please try another email.',
+          }));
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            submit: error.message,
+          }));
+        }
+      });
+      // .catch((error)=>{
+      //   console.log(error.message);
+      //   setErrors({submit:error.message})
+      //   alert(error.message)
+      // })
+   
+    });
+    
+    
   }
 function clickSignUpLogo()
 {
-  <Link to="/"></Link>
+  history.push('/')
 }
 
   return (
@@ -44,8 +100,8 @@ function clickSignUpLogo()
       <div className="signupParentDiv">
         <img onClick={clickSignUpLogo} width="200px" height="200px" src={Logo}></img>
         <form className="signUpform" onSubmit={handleSubmit}>
-          <label htmlFor="fname">Username</label>
-          <br />
+          {/* <label htmlFor="fname">Username</label> */}
+          {/* <br /> */}
           <input
             className="input"
             type="text"
@@ -53,11 +109,12 @@ function clickSignUpLogo()
             onChange={(e)=>setName(e.target.value)}
             id="fname"
             name="name"
-            
+            placeholder='Name'
           />
-          <br />
-          <label htmlFor="fname">Email</label>
-          <br />
+          {errors.name && <p className="error">{errors.name}</p>}
+          {/* <br /> */}
+          {/* <label htmlFor="fname">Email</label> */}
+          {/* <br /> */}
           <input
             className="input"
             type="email"
@@ -65,11 +122,12 @@ function clickSignUpLogo()
             onChange={(e)=>setEmail(e.target.value)}
             id="fname"
             name="email"
-           
+            placeholder='Email'
           />
-          <br />
-          <label htmlFor="lname">Phone</label>
-          <br />
+           {errors.email && <p className="error">{errors.email}</p>}
+          {/* <br /> */}
+          {/* <label htmlFor="lname">Phone</label> */}
+          {/* <br /> */}
           <input
             className="input"
             type="number"
@@ -77,11 +135,12 @@ function clickSignUpLogo()
             onChange={(e)=>setPhone(e.target.value)}
             id="lname"
             name="phone"
-            
+            placeholder='Phone'
           />
-          <br />
-          <label htmlFor="lname">Password</label>
-          <br />
+          {errors.phone && <p className="error">{errors.phone}</p>}
+          {/* <br /> */}
+          {/* <label htmlFor="lname">Password</label> */}
+          {/* <br /> */}
           <input
             className="input"
             type="password"
@@ -89,14 +148,16 @@ function clickSignUpLogo()
             onChange={(e)=>setPassword(e.target.value)}
             id="lname"
             name="password"
-            
+            placeholder='New Password'
           />
-          <br />
-          <br />
+          {/* <br /> */}
+          {errors.password && <p className="error">{errors.password}</p>}
+          {/* <br /> */}
           <button>Signup</button>
         </form>
        <Link className="loginNav" to='/login'>Login</Link>
       </div>
+      
     </div>
   );
 }

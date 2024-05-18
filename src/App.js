@@ -8,6 +8,8 @@ import Create from './Pages/Create'
 import View from './Pages/ViewPost'
 import { AuthContext, FirebaseContext } from './Store/Context';
 import Post from './Store/PostContext'
+
+
 function App() {
   const {setUser}=useContext(AuthContext)
   const {firebase}=useContext(FirebaseContext)
