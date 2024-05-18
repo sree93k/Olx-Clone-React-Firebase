@@ -4,7 +4,8 @@ import './Signup.css';
 import { FirebaseContext } from '../../Store/Context';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Signup() {
 
   const [name,setName]=useState('')
@@ -13,6 +14,7 @@ export default function Signup() {
   const [password,setPassword]=useState('')
   const [errors, setErrors] = useState({name:null,email:null,phone:null,password:null});
   const {firebase}=useContext(FirebaseContext)
+  
   const history=useHistory()
 
   const validate = () => {
@@ -25,9 +27,7 @@ export default function Signup() {
     if (!email) {
       errors.email = 'Email is required';
       console.log("errors",errors);
-      
     }
-    
      else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = 'Email is invalid';
     }
@@ -50,6 +50,7 @@ export default function Signup() {
       setErrors(validationErrors);
       // alert(errors)
       console.log("errors",errors);
+      
       return;
     }
 
@@ -69,11 +70,13 @@ export default function Signup() {
       .catch((error) => {
         console.log(error.message);
         if (error.code === 'auth/email-already-in-use') {
+          toast.error(errors.code);
           setErrors((prevErrors) => ({
             ...prevErrors,
             email: 'This email is already in use. Please try another email.',
           }));
         } else {
+          toast.error(errors.code);
           setErrors((prevErrors) => ({
             ...prevErrors,
             submit: error.message,
@@ -157,7 +160,7 @@ function clickSignUpLogo()
         </form>
        <Link className="loginNav" to='/login'>Login</Link>
       </div>
-      
+      <ToastContainer />
     </div>
   );
 }

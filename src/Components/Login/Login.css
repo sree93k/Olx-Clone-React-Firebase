@@ -1,55 +1,61 @@
-
 .loginParentDiv {
-    border: 1px solid black;
-    width: 400px;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .loginParentDiv .input {
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    outline-color: transparent;
-    width: 300px;
-  }
-  
-  .loginParentDiv button {
-    width: 100%;
-    height: 48px;
-    /* border-color: transparent; */
-    background-color: #002f34;
-    color: whitesmoke;
-    font-weight: 900;
-  }
-  .loginParentDiv button:hover {
-    background-color: white;
-    color: #002f34;
-    border: 2px solid #002f34;
-  }
-  
-  .loginParentDiv a {
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-  }
+  border: 1px solid black;
+  width: 450px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .signupNav{
-    text-decoration: none;
-    color: black;
-    margin:20px ;
-    font-size:medium ;
-  }
+.loginParentDiv .input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  width: 400px;
+  margin: 10px 0;
+  padding: 8px 0;
+}
 
-  .signupNav:hover{
-    font-size: large;
-    color: black;
-  }
-  
+.loginParentDiv button {
+  width: 100%;
+  height: 48px;
+  background-color: #002f34;
+  color: whitesmoke;
+  font-weight: 900;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loginParentDiv button:hover {
+  background-color: white;
+  color: #002f34;
+  border: 2px solid #002f34;
+}
+
+.loginParentDiv a {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: medium;
+}
+
+.signupNav:hover {
+  font-size: large;
+  color: black;
+}
+
+.error {
+  color: red;
+  margin: 5px 0; /* Ensure small margin to avoid large gaps */
+  font-size: 14px; /* Adjust font size for better fit */
+}

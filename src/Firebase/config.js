@@ -2,6 +2,7 @@ import firebase from "firebase";
 import 'firebase/auth'
 import 'firebase/firebase'
 import 'firebase/storage'
+
 const firebaseConfig = {
     apiKey: "AIzaSyDFCkzqr5I5r8zU7GQsOZp1hTFt4o8FJ7U",
     authDomain: "olx-clone-74d38.firebaseapp.com",
