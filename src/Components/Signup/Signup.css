@@ -47,3 +47,14 @@
     width: 300px;
   
   }
+
+  .loginNav{
+    color: black;
+    font-size: medium;
+    margin: 20px;
+  }
+
+  .loginNav:hover{
+    font-size:large;
+    color: black;
+  }

@@ -5,7 +5,7 @@ import { PostContext } from '../../Store/PostContext';
 import { FirebaseContext } from '../../Store/Context';
 function View() {
 
-  const [userDetails,setUserDetails]=useState({})
+  const [userDetails,setUserDetails]=useState()
   const {postDetails}=useContext(PostContext)
   const {firebase}=useContext(FirebaseContext)
   
@@ -15,6 +15,7 @@ function View() {
     firebase.firestore().collection('users').where('id','==',userId).get().then((res)=>{
       res.forEach(doc => {
         setUserDetails(doc.data())
+        console.log(userDetails);
       });
 
     })}
@@ -22,19 +23,21 @@ function View() {
 
   return (
     <div className="viewParentDiv">
-      <div className="imageShowDiv">
-        <img
-          src={postDetails.url}
-          alt=""
-        />
-      </div>
-      <div className="rightSection">
-        <div className="productDetails">
-          <p>&#x20B9; {postDetails.price} </p>
-          <span>{postDetails.name}</span>
-          <p>{postDetails.category}</p>
-          <span>{postDetails.createdAt}</span>
+    
+    {postDetails  ? (
+        <div className="imageShowDiv">
+          <img src={postDetails.url} alt="" />
         </div>
+      ) : null}
+      <div className="rightSection">
+      {postDetails && (
+          <div className="productDetails">
+            <p>&#x20B9; {postDetails.price} </p>
+            <span>{postDetails.name}</span>
+            <p>{postDetails.category}</p>
+            <span>{postDetails.createdAt}</span>
+          </div>
+        )}
         {userDetails &&
         <div className="contactDetails">
         <p>Seller details</p>
@@ -42,6 +45,7 @@ function View() {
         <p>{userDetails.phone}</p>
       </div>}
       </div>
+    
     </div>
   );
 }

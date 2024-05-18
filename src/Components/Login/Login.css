@@ -39,4 +39,16 @@
     justify-content: center;
     cursor: pointer;
   }
+
+  .signupNav{
+    text-decoration: none;
+    color: black;
+    margin:20px ;
+    font-size:medium ;
+  }
+
+  .signupNav:hover{
+    font-size: large;
+    color: black;
+  }
   

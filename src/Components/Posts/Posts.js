@@ -11,18 +11,24 @@ function Posts() {
   const {firebase}=useContext(FirebaseContext)
   const {setPostDetails}=useContext(PostContext)
   const history=useHistory()
+
   useEffect(()=>{
+    
     firebase.firestore().collection('products').get().then((snapshot)=>{
-      const allPost=snapshot.docs.map((product)=>{
+     const allPost=snapshot.docs.map((product)=>{
         return {
           ...product.data(),
           id:product.id
         }
       })
-      setProducts(allPost=>{
-        history.push('/view')
-      })
+      console.log("all post is",allPost);
+       console.log("Products",products);
+      setProducts(allPost)
+      
+      
     })
+    console.log("hiii");
+   
   },[])
 
   return (
@@ -40,6 +46,7 @@ function Posts() {
             className="card"
             onClick={()=>{
               setPostDetails(product)
+              history.push('/view')
             }}
           >
             <div className="favorite">

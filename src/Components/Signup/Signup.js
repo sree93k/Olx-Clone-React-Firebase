@@ -4,6 +4,7 @@ import Logo from '../../olx-logo.png';
 import './Signup.css';
 import { FirebaseContext } from '../../Store/Context';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 export default function Signup() {
 
   const [name,setName]=useState('')
@@ -33,12 +34,15 @@ export default function Signup() {
       })
     })
   }
-
+function clickSignUpLogo()
+{
+  <Link to="/"></Link>
+}
 
   return (
     <div>
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img onClick={clickSignUpLogo} width="200px" height="200px" src={Logo}></img>
         <form className="signUpform" onSubmit={handleSubmit}>
           <label htmlFor="fname">Username</label>
           <br />
@@ -91,7 +95,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+       <Link className="loginNav" to='/login'>Login</Link>
       </div>
     </div>
   );
