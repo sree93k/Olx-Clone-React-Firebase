@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
@@ -14,6 +14,7 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import image from './user_logo.png'
 function Header() {
+  const [language,setLanguage]=useState('')
   const {user}=useContext(AuthContext)
 
   const {firebase}=useContext(FirebaseContext)
@@ -52,11 +53,12 @@ function Header() {
           <Arrow></Arrow> */}
             <Dropdown>
       <Dropdown.Toggle variant="" id="dropdown-basic">
-        English
+        {language?language:'English'}
       </Dropdown.Toggle>
 
       <Dropdown.Menu className='hindi'>
-        <Dropdown.Item  href="#/action-1">Hindi</Dropdown.Item>
+        <Dropdown.Item onClick={()=>setLanguage('English')} href="#/action-1">English</Dropdown.Item>
+        <Dropdown.Item onClick={()=>setLanguage('हिंदी')} href="#/action-2">हिंदी</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
         </div>

@@ -1,18 +1,19 @@
 .viewParentDiv {
   padding-top: 4em;
   display: flex;
+  
 }
 .viewParentDiv .imageShowDiv {
   padding: 16px;
   width: 70vw;
 }
 .viewParentDiv .imageShowDiv img {
-  width: 65vw;
+  width: 55vw;
   height: 85vh;
 }
 
 .viewParentDiv .rightSection {
-  padding: 16px;
+  padding-right: 90px;
   margin-top: 3em;
   width: 30vw;
 }
@@ -47,4 +48,121 @@
   color: #002f34;
   font-weight: 400;
   padding: 0;
+} 
+
+
+
+
+.viewParentDiv {
+  padding-top: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+.viewParentDiv .imageShowDiv {
+  padding: 16px;
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.viewParentDiv .imageShowDiv img {
+  width: 700px;
+  height: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rightSection {
+  
+  width: 35vw;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightSection h3 {
+  margin-bottom: 16px;
+  color: #002f34;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.productDetails {
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-left: 30px;
+}
+
+.pDetails {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.pDetails:first-child {
+  font-weight: 700;
+  font-size: 24px;
+  color: #002f34;
+}
+
+.productDetails h2 {
+  font-size: 20px;
+ 
+  margin-bottom: 8px;
+  color: #333;
+}
+
+
+
+.productDetails span {
+  font-size: 14px;
+  color: #777;
+}
+
+
+
+
+.contactDetails {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contactDetails p:first-child {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #002f34;
+  margin-bottom: 8px;
+}
+
+.contactDetails p {
+  font-size: 16px;
+  color: #333;
+  margin: 4px 0;
+}
+
+.contactDetails p:nth-child(2) {
+  font-weight: 600;
+}
+.buyNow{
+  outline: none;
+  background-color: #002f34;
+  color:white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
 }

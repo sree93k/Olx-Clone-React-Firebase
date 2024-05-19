@@ -45,7 +45,10 @@ function Login() {
       .then(() => {
         history.push('/');
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        setErrors(error.message)
+        console.log(errors);
+      });
   };
 
 

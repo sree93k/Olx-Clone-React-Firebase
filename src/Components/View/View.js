@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './View.css';
 import { PostContext } from '../../Store/PostContext';
 import { FirebaseContext } from '../../Store/Context';
+import Button from 'react-bootstrap/Button';
 function View() {
 
   const [userDetails,setUserDetails]=useState()
@@ -30,14 +31,21 @@ function View() {
         </div>
       ) : null}
       <div className="rightSection">
+      <h3 className='products details'>Product Details</h3>
       {postDetails && (
+          
           <div className="productDetails">
-            <p>&#x20B9; {postDetails.price} </p>
-            <span>{postDetails.name}</span>
-            <p>{postDetails.category}</p>
+            
+            <p className='pDetails'> &#x20B9; {postDetails.price} </p>
+            <h2 className='pDetails'>{postDetails.name}</h2>
+            <h2 className='pDetails'>{postDetails.category}</h2>
+           
             <span>{postDetails.createdAt}</span>
+
           </div>
         )}
+         {/* <Button className='pDetails' variant="success">Buy Now</Button>{' '} */}
+         <button className='buyNow'>Buy Now</button>
         {userDetails &&
         <div className="contactDetails">
         <p>Seller details</p>
