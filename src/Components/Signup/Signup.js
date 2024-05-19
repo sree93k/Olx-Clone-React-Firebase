@@ -66,30 +66,19 @@ export default function Signup() {
         }).then(()=>{
           history.push('login')
         })
+        .catch((error)=>{
+          console.log(error.message);
+        })
       })
       .catch((error) => {
         console.log(error.message);
-        if (error.code === 'auth/email-already-in-use') {
-          toast.error(errors.code);
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            email: 'This email is already in use. Please try another email.',
-          }));
-        } else {
-          toast.error(errors.code);
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            submit: error.message,
-          }));
-        }
+        setErrors("Account Already Exist")
       });
-      // .catch((error)=>{
-      //   console.log(error.message);
-      //   setErrors({submit:error.message})
-      //   alert(error.message)
-      // })
-   
-    });
+    })
+    .catch((error)=>{
+      console.log(error.message);
+      setErrors(error.message)
+    })
     
     
   }
@@ -105,6 +94,8 @@ function clickSignUpLogo()
         <form className="signUpform" onSubmit={handleSubmit}>
           {/* <label htmlFor="fname">Username</label> */}
           {/* <br /> */}
+          {errors==="The email address is already in use by another account."?
+          <p className="error">{errors}</p>:""}
           <input
             className="input"
             type="text"

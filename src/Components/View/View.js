@@ -16,9 +16,9 @@ function View() {
     firebase.firestore().collection('users').where('id','==',userId).get().then((res)=>{
       res.forEach(doc => {
         setUserDetails(doc.data())
-        console.log(userDetails);
+        
       });
-
+      console.log("userDetails",userDetails);
     })}
   },[])
 
@@ -44,7 +44,7 @@ function View() {
 
           </div>
         )}
-         {/* <Button className='pDetails' variant="success">Buy Now</Button>{' '} */}
+        
          <button className='buyNow'>Buy Now</button>
         {userDetails &&
         <div className="contactDetails">

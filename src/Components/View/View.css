@@ -79,7 +79,7 @@
 
 .rightSection {
   
-  width: 35vw;
+  width: 3vw;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -101,7 +101,7 @@
 .productDetails {
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  margin-left: 30px;
+  margin-left: 80px;
 }
 
 .pDetails {
@@ -132,13 +132,14 @@
 
 
 
-
 .contactDetails {
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 }
 
 .contactDetails p:first-child {
@@ -158,10 +159,11 @@
 .contactDetails p:nth-child(2) {
   font-weight: 600;
 }
-.buyNow{
+
+.buyNow {
   outline: none;
   background-color: #002f34;
-  color:white;
+  color: white;
   border-radius: 5px;
   padding: 10px 20px;
   margin-bottom: 20px;

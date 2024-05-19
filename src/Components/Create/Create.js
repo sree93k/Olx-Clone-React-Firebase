@@ -23,7 +23,6 @@ const Create = () => {
     if (!name) {errors.name = 'Name is required'}
     else if (!/^[A-Za-z]+$/.test(name)) {
       errors.name = 'Name can only contain alphabets';
-      
     }
     if (!category) {errors.category = 'Category is required'}
     else if (!/^[A-Za-z]+$/.test(category)) {
